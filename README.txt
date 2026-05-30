@@ -1,9 +1,13 @@
-Ethan's Specials Web App v2.3
+Ethan's Specials Web App - Version 2.5 iPhone Optimized
 
-Open index.html. Keep these files together in the same folder:
+Files included:
 - index.html
 - styles.css
 - app.js
 - data.js
+- manifest.webmanifest
+- icon.svg
+- apple-touch-icon.png
 
-If uploading to GitHub Pages/Vercel, upload all 4 files, not just index.html.
+Keep all files together in the same folder.
+For iPhone: open the hosted page in Safari, tap Share, then Add to Home Screen.
