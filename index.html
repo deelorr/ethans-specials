@@ -1,45 +1,96 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Ethan's Specials Library</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#15100c" />
+  <title>Ethan's Specials</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <h1>Ethan's Specials Library</h1>
-    <p>Browse specials by category, week, station, protein, sauce, or ingredient.</p>
-  </div>
-</header>
-<main class="wrap">
-  <section class="stats">
-    <div class="stat"><b id="total">0</b><span>Total specials</span></div>
-    <div class="stat"><b id="cats">0</b><span>Categories</span></div>
-    <div class="stat"><b id="weeks">0</b><span>Weeks tracked</span></div>
-    <div class="stat"><b id="repeats">0</b><span>Repeat candidates</span></div>
-  </section>
-  <section class="controls">
-    <input id="search" placeholder="Search bacon, avocado, hollandaise, burger...">
-    <select id="category"></select>
-    <select id="meal"><option value="">Breakfast & Lunch</option><option>Breakfast</option><option>Lunch</option></select>
-    <select id="week"></select>
-    <select id="station"></select>
-  </section>
-  <section class="layout">
-    <aside class="panel">
-      <h3>Categories</h3>
-      <div id="chips"></div>
-      <div class="builder">
-        <button id="random">Build sample week</button>
-        <button class="secondary" id="clear" style="margin-top:8px">Clear filters</button>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Ethan's Eatery</p>
+      <h1>Specials Library</h1>
+    </div>
+    <button id="installBtn" class="ghost hidden">Install</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Mobile kitchen tool</p>
+        <h2 id="heroTitle">Browse, search, and rebuild your best specials.</h2>
       </div>
-    </aside>
-    <section class="grid" id="cards"></section>
-  </section>
-</main>
-<script src="data.js"></script>
-<script src="app.js"></script>
+      <div class="heroStats">
+        <div><strong id="totalSpecials">0</strong><span>Specials</span></div>
+        <div><strong id="totalWeeks">0</strong><span>Weeks</span></div>
+        <div><strong id="repeatCount">0</strong><span>Repeats</span></div>
+      </div>
+    </section>
+
+    <nav class="tabs" aria-label="App sections">
+      <button class="tab active" data-view="dashboard">Dashboard</button>
+      <button class="tab" data-view="browse">Browse</button>
+      <button class="tab" data-view="weeks">Weeks</button>
+      <button class="tab" data-view="builder">Builder</button>
+    </nav>
+
+    <section id="dashboard" class="view active">
+      <div class="sectionHead"><h2>Quick Filters</h2><span>Tap to browse</span></div>
+      <div id="categoryChips" class="chipGrid"></div>
+
+      <div class="grid two">
+        <article class="panel"><h3>Top Categories</h3><div id="categoryStats" class="statList"></div></article>
+        <article class="panel"><h3>Top Proteins</h3><div id="proteinStats" class="statList"></div></article>
+      </div>
+
+      <article class="panel"><h3>Repeat Candidates</h3><div id="repeatCards" class="cards compact"></div></article>
+    </section>
+
+    <section id="browse" class="view">
+      <div class="searchBox">
+        <input id="searchInput" type="search" placeholder="Search avocado, chipotle, crab, burger..." />
+      </div>
+      <div class="filters">
+        <select id="categoryFilter"><option value="">All categories</option></select>
+        <select id="mealFilter"><option value="">All meal types</option></select>
+        <select id="stationFilter"><option value="">All stations</option></select>
+        <select id="speedFilter"><option value="">All speeds</option></select>
+      </div>
+      <p id="resultCount" class="resultCount"></p>
+      <div id="specialCards" class="cards"></div>
+    </section>
+
+    <section id="weeks" class="view">
+      <div class="sectionHead"><h2>Browse by Week</h2><span>History view</span></div>
+      <div id="weekList" class="weekList"></div>
+    </section>
+
+    <section id="builder" class="view">
+      <div class="sectionHead"><h2>Week Builder</h2><span>Starter planner</span></div>
+      <article class="panel builderPanel">
+        <p>Use this as your rough planning board. Tap a suggestion to copy the special name.</p>
+        <div class="builderGrid">
+          <div class="slot"><label>Premium Breakfast</label><input placeholder="Benedict / Avo Toast" /></div>
+          <div class="slot"><label>Sweet Breakfast</label><input placeholder="Pancake / Waffle / French Toast" /></div>
+          <div class="slot"><label>Lunch Anchor</label><input placeholder="Burger / Sandwich / Melt" /></div>
+          <div class="slot"><label>Egg Dish</label><input placeholder="Scramble / Omelette / Burrito" /></div>
+          <div class="slot"><label>Light / Fast Item</label><input placeholder="Wrap / Salad / Toast" /></div>
+        </div>
+        <button id="suggestBalanced" class="primary">Suggest from database</button>
+      </article>
+      <div id="suggestions" class="cards"></div>
+    </section>
+  </main>
+
+  <dialog id="detailDialog">
+    <button class="close" id="closeDialog">×</button>
+    <div id="detailContent"></div>
+  </dialog>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
