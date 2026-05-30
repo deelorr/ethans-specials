@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ethan's Specials Library</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Ethan's Specials Library</h1>
+    <p>Browse specials by category, week, station, protein, sauce, or ingredient.</p>
+  </div>
+</header>
+<main class="wrap">
+  <section class="stats">
+    <div class="stat"><b id="total">0</b><span>Total specials</span></div>
+    <div class="stat"><b id="cats">0</b><span>Categories</span></div>
+    <div class="stat"><b id="weeks">0</b><span>Weeks tracked</span></div>
+    <div class="stat"><b id="repeats">0</b><span>Repeat candidates</span></div>
+  </section>
+  <section class="controls">
+    <input id="search" placeholder="Search bacon, avocado, hollandaise, burger...">
+    <select id="category"></select>
+    <select id="meal"><option value="">Breakfast & Lunch</option><option>Breakfast</option><option>Lunch</option></select>
+    <select id="week"></select>
+    <select id="station"></select>
+  </section>
+  <section class="layout">
+    <aside class="panel">
+      <h3>Categories</h3>
+      <div id="chips"></div>
+      <div class="builder">
+        <button id="random">Build sample week</button>
+        <button class="secondary" id="clear" style="margin-top:8px">Clear filters</button>
+      </div>
+    </aside>
+    <section class="grid" id="cards"></section>
+  </section>
+</main>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
