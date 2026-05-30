@@ -2,8 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ethan's Specials App v2.3</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#17120e" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Specials" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <title>Ethan's Specials App v2.5</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -11,12 +17,15 @@
     <div>
       <p class="eyebrow">Ethan's Eatery</p>
       <h1>Specials Database</h1>
-      <p class="version">Version 2.3 — fixed folder build</p>
+      <p class="version">Version 2.5 — iPhone Optimized</p>
     </div>
   </header>
 
   <main>
     <section id="dashboard" class="page active">
+      <div class="ios-card" id="iosInstallTip">
+        <strong>iPhone setup:</strong> open this page in Safari, tap Share, then <strong>Add to Home Screen</strong> for the app-style view.
+      </div>
       <div class="stats-grid" id="dashboardStats"></div>
       <div class="panel">
         <h2>Quick Search</h2>
@@ -68,6 +77,17 @@
       <div id="builderOutput" class="cards"></div>
     </section>
 
+    <section id="ingredients" class="page">
+      <div class="panel sticky">
+        <h2>Ingredient Explorer</h2>
+        <p>Search or tap an ingredient to see every special that uses it.</p>
+        <input id="ingredientSearch" class="input" placeholder="Search avocado, bacon, Swiss, chipotle..." />
+      </div>
+      <div id="ingredientCloud" class="chip-cloud"></div>
+      <div id="ingredientDetails" class="panel hidden"></div>
+      <div id="ingredientResults" class="cards"></div>
+    </section>
+
     <section id="stats" class="page">
       <div class="panel"><h2>Stats</h2><p>Fast counts from the current database.</p></div>
       <div id="statsOutput" class="stats-output"></div>
@@ -75,11 +95,12 @@
   </main>
 
   <nav class="bottom-nav">
-    <button data-page="dashboard" class="active">Home</button>
-    <button data-page="browse">Browse</button>
-    <button data-page="weeks">Weeks</button>
-    <button data-page="builder">Builder</button>
-    <button data-page="stats">Stats</button>
+    <button data-page="dashboard" class="active"><span>⌂</span>Home</button>
+    <button data-page="browse"><span>⌕</span>Browse</button>
+    <button data-page="weeks"><span>☰</span>Weeks</button>
+    <button data-page="builder"><span>＋</span>Builder</button>
+    <button data-page="ingredients"><span>◌</span>Ingredients</button>
+    <button data-page="stats"><span>▦</span>Stats</button>
   </nav>
 
   <div id="modal" class="modal hidden"><div class="modal-card"><button id="closeModal" class="close">×</button><div id="modalContent"></div></div></div>
