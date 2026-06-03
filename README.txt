@@ -1,13 +1,9 @@
-Ethan's Specials Web App - Version 2.5 iPhone Optimized
+Ethan Specials App v3.0 - Sheet Sync Fix
 
-Files included:
-- index.html
-- styles.css
-- app.js
-- data.js
-- manifest.webmanifest
-- icon.svg
-- apple-touch-icon.png
+Open index.html. Keep index.html, styles.css, app.js, data.js, manifest.webmanifest, icon.svg, and apple-touch-icon.png together.
 
-Keep all files together in the same folder.
-For iPhone: open the hosted page in Safari, tap Share, then Add to Home Screen.
+Google Sheets sync now accepts either:
+1. A normal Google Sheets edit/share link, or
+2. File > Share > Publish to web > CSV link.
+
+If sync fails, the app keeps using embedded fallback data.

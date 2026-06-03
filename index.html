@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="Specials" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-  <title>Ethan's Specials App v2.5</title>
+  <title>Ethan's Specials App v2.9</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -17,7 +17,7 @@
     <div>
       <p class="eyebrow">Ethan's Eatery</p>
       <h1>Specials Database</h1>
-      <p class="version">Version 2.5 — iPhone Optimized</p>
+      <p class="version">Version 3.0 — Sheet Sync Fix</p>
     </div>
   </header>
 
@@ -25,6 +25,17 @@
     <section id="dashboard" class="page active">
       <div class="ios-card" id="iosInstallTip">
         <strong>iPhone setup:</strong> open this page in Safari, tap Share, then <strong>Add to Home Screen</strong> for the app-style view.
+      </div>
+      <div class="panel live-panel">
+        <h2>Live Sheet Sync</h2>
+        <p class="muted">Paste a normal Google Sheets link or a published CSV link. v3.0 converts common Sheets links and shows clearer sync errors.</p>
+        <input id="sheetUrlInput" class="input" placeholder="Paste Google Sheets link or published CSV link..." />
+        <div class="button-row">
+          <button id="saveSheetUrlBtn" class="secondary">Save Link</button>
+          <button id="syncSheetBtn" class="primary">Sync Now</button>
+          <button id="clearSheetUrlBtn" class="secondary danger">Use Embedded Data</button>
+        </div>
+        <p id="syncStatus" class="sync-status">Using embedded data.</p>
       </div>
       <div class="stats-grid" id="dashboardStats"></div>
       <div class="panel">
@@ -88,6 +99,46 @@
       <div id="ingredientResults" class="cards"></div>
     </section>
 
+    <section id="randomizer" class="page">
+      <div class="panel idea-controls">
+        <h2>Smart Idea Generator</h2>
+        <p>Generate brand-new specials by combining ingredients with simple kitchen logic: matching flavor profile, format, sauce, cheese, crunch, acid, and station load.</p>
+        <label>Special type</label>
+        <select id="randomCategory" class="input"><option value="">Any type</option></select>
+        <label>Meal Type</label>
+        <select id="randomMeal" class="input"><option value="">Any meal type</option></select>
+        <label>Idea mode</label>
+        <select id="sparkMode" class="input">
+          <option value="balanced">Creative Mix — keep the spark feature style</option>
+          <option value="house">House Style — weight real database pairings</option>
+          <option value="wildcard">Wild Card — allow new/outside ingredients</option>
+        </select>
+        <p class="muted mini-note"><strong>House Style</strong> learns from your 208 specials. <strong>Wild Card</strong> keeps the logic but allows fresh ingredients you may not stock yet.</p>
+        <label>Flavor direction</label>
+        <select id="ideaProfile" class="input">
+          <option value="">Surprise me</option>
+          <option value="classic">Classic diner</option>
+          <option value="southwest">Southwest / Mexican</option>
+          <option value="bbq">BBQ / Smokehouse</option>
+          <option value="deli">Deli / Melt</option>
+          <option value="california">Fresh California</option>
+          <option value="southern">Southern comfort</option>
+          <option value="italian">Italian-ish</option>
+          <option value="spicy">Spicy</option>
+        </select>
+        <label>Avoid ingredients</label>
+        <input id="randomAvoid" class="input" placeholder="Example: avocado, crab, jalapeño" />
+        <label>Prefer protein / ingredient</label>
+        <input id="randomPrefer" class="input" placeholder="Example: chicken, beef, bacon" />
+        <div class="button-row random-actions">
+          <button id="randomOneBtn" class="primary">Make 1 Idea</button>
+          <button id="randomThreeBtn" class="secondary">Make 5 Ideas</button>
+          <button id="randomWeekBtn" class="secondary">Spark Full Week</button>
+        </div>
+      </div>
+      <div id="randomOutput" class="cards"></div>
+    </section>
+
     <section id="stats" class="page">
       <div class="panel"><h2>Stats</h2><p>Fast counts from the current database.</p></div>
       <div id="statsOutput" class="stats-output"></div>
@@ -99,6 +150,7 @@
     <button data-page="browse"><span>⌕</span>Browse</button>
     <button data-page="weeks"><span>☰</span>Weeks</button>
     <button data-page="builder"><span>＋</span>Builder</button>
+    <button data-page="randomizer"><span>✦</span>Ideas</button>
     <button data-page="ingredients"><span>◌</span>Ingredients</button>
     <button data-page="stats"><span>▦</span>Stats</button>
   </nav>
